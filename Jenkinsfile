@@ -3,7 +3,6 @@ pipeline {
 	agent any
 	environment {
 		MVN_HOME = '/opt/maven'
-		def pom = readMavenPom file: 'pom.xml'
 	}
 			stages{
    
@@ -15,17 +14,14 @@ pipeline {
 			}
 			stage('Build') {
 				steps { 
-					sh "mvn clean install"
+					sh "'${MVN_HOME}/bin/mvn' clean package"
 				}
 			}
 
-			stage("publish to nexus") {
-			  stage('UploadToNexus'){
+			stage('UploadToNexus'){
 				steps {
 					nexusPublisher nexusInstanceId: 'nexusrepo', nexusRepositoryId: 'sample', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/ROOT.war']], mavenCoordinate: [artifactId: 'sample', groupId: 'maven', packaging: 'war', version: '$BUILD_NUMBER']]]
 				}
 			}
- 
-         }
     }
 }

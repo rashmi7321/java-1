@@ -2,7 +2,7 @@ pipeline {
 
 	agent any
 	environment {
-		MVN_HOME = '/opt/maven'
+		MVN_HOME = '/usr/share/apache-maven'
 	}
 			stages{
    

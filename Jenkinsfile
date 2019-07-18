@@ -9,7 +9,7 @@ pipeline {
    
 		stage('checkout') {
 				steps {
-					checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/rashmi7321/hello-world-war.git']]])
+					checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/rashmi7321/java-1.git']]])
 				}
           
 			}
@@ -27,4 +27,5 @@ pipeline {
 			}
  
     }
+  }
 }
